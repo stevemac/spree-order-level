@@ -1,0 +1,14 @@
+<tr class="volume_price">
+  <td valign="top"><%=@variant.sku %></td>
+  <td valign="top"><%=@variant.product.name %></td>
+  <td valign="top"><%=variant_options @variant %></td>
+  <td valign="top">
+    <%= f.error_message_on(:order_minimum) %>
+    <%=f.text_field(:order_minimum, :size => 10)%>
+  </td>
+  <td valign="top">
+    <%= f.error_message_on(:order_increment) %>
+    <%=f.text_field(:order_increment, :size => 10)%>
+  </td>
+  <td valign="top"><%= f.remove_link ("Delete") %></td>
+</tr>

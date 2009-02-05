@@ -1,0 +1,34 @@
+<% if @variant.order_level.nil?
+   ol = OrderLevel.new( :variant_id => @variant.id,
+                    :order_minimum => 1,
+                    :order_increment => 1)
+   ol.save
+   @variant.order_level = ol
+end
+%>
+<%= render :partial => 'shared/product_sub_menu' %>
+<h1>Editing Product</h1>
+<%= render :partial => 'shared/product_tabs', :locals => {:current => "Variants"} %>
+<%= error_messages_for :variant %>
+
+<% form_for(:variant, :url => object_url, :html => { :method => :put }) do |f| %>
+    <%= render :partial => "form", :locals => { :f => f } %>
+    <h3>Order Levels</h3>
+    <table class="admin-report" width="545">
+        <thead>
+            <tr>
+                <th>SKU</th>
+                <th width="150">Product</th>
+                <th>Variant</th>
+                <th>Minimum</th>
+                <th>Increment</th>
+                <th>Actiion</th>
+            </tr>
+        </thead>
+        <tbody id="volume_prices">
+            <%= f.render_associated_form(@variant.order_level) %>
+        </tbody>
+    </table>
+<% end %>
+<br/><br/>  
+<%= render :partial => 'shared/edit_resource_links' %>
