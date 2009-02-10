@@ -1,1 +1,3 @@
 order_levels: Order Levels
+order_minimum: Minimum Order Quantity
+order_increment: Order Quantity Increment
