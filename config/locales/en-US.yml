@@ -1,2 +1,3 @@
-order_minimum: Minimum Order Quantity
-order_increment: Order Quantity Increment
+en-US:
+    order_minimum: Minimum Order
+    rder_increment: Order Quantity Increment
