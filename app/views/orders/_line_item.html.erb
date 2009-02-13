@@ -7,11 +7,8 @@
     <%= link_to variant.product.name,  product_path(variant.product) %>
     <%= variant_options variant %><br/>
     <%= truncate(variant.product.description, length = 100, truncate_string = "...") %><br/>
-    <% if line_item.errors.length > 0
-       %><br/><%
-       line_item.errors.each { |err|
-         %><%= err %><br/><%
-       }
+    <% if line_item.comment
+    %><br/><%= t(line_item.comment) %><%
     end %>
   </td>
   <td valign="top" width="75">

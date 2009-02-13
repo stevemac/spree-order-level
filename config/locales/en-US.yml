@@ -1,3 +1,5 @@
 en-US:
     order_minimum: Minimum Order
     rder_increment: Order Quantity Increment
+    quantity_minimum_adjusted: Quantity adjusted to minimum order requirement
+    quantity_increment_adjusted: Quantity adjusted to increment requirement
