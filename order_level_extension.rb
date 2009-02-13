@@ -9,5 +9,28 @@ class OrderLevelExtension < Spree::Extension
             {:name => 'Order Increment', :only => [:product], :format => "%d"}
         ]
 
+        LineItem.class_eval do
+            before_save  :check_order_levels
+
+            def check_order_levels
+                min = variant.product.order_minimum
+                inc = variant.product.order_increment
+                if min  > 1
+                    if self.quantity < min
+                        self.quantity = min
+                        errors.add(:quantity, " adjusted quantity to minimum required")
+                    end
+                    if inc > 1
+                        base = self.quantity / min
+                        mod = self.quantity % inc
+                        if mod != 0
+                            self.quantity = (base + 1) * inc
+                        errors.add(:quantity, " adjusted quantity required increment")
+                        end
+                    end
+                end
+            end
+        end
+
     end #activate
 end
