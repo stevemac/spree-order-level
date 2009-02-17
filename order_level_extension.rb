@@ -21,14 +21,22 @@ class OrderLevelExtension < Spree::Extension
                         self.quantity = min
                         self.comment = "quantity_minimum_adjusted"
                     end
-                    if inc > 1
-                        base = self.quantity / min
-                        mod = self.quantity % inc
+
+                    # Because we came in through the minimum check, we
+                    # know we're always going to have at least the
+                    # minimum quantity.
+                    # if min is 5, and inc is 2 the sequence needs to be
+                    # 5,7,9... 
+
+                    if ((inc > 1) && (self.quantity > min)) 
+                        over_min = self.quantity - min 
+                        base = over_min  / inc 
+                        mod = over_min  % inc 
                         if mod != 0
-                            self.quantity = (base + 1) * inc
+                            self.quantity = min + ((base + 1)  * inc)
                             self.comment = "quantity_increment_adjusted"
                         end
-                    end
+                    end 
                 end
             end # check_order_levels
         end # class_eval
