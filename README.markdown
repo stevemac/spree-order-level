@@ -1,4 +1,4 @@
-= Order Level
+Order Level
 
 Adds order_minimum and order_increment to the Product model as well as adding them as extra fields to the Product administration page.
 
@@ -6,7 +6,7 @@ As an example, setting both to 10 is basically saying "You have to order at leas
 
 This extensions migration add order_minimum and order_increment columns to the products table and add a comment column to the line_items table. 
 
-An override for <spree app>/views/product/show.html.erb is included  to demonstrate how to display a minimum quantity message to the customer.
+An override for <spree app>/views/product/show.html.erb is included  to demonstrate how to display a minimum quantity message to the customer. This override has been updated to work with the latest (0.7) version of Spree so if something breaks, please diff it with the base view.
 
 An override for <spree app>/views/orders/_line_item.html.erb is included to demonstrate the display of line_item.comment when an adjustment is made to the order quantity.
 
